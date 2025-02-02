@@ -350,7 +350,26 @@ input:checked + .slider:before {
     flex-direction: column;
     text-align: center;
   }
-
+ body.light-mode {
+    background-image:url(../src/assets/snowday.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-color: #f3efef;
+    color: #1b1b1b;
+  }
+  
+  /* Dark Mode */
+  body.dark-mode {
+    background-color: #282c34;
+    color: #fff;
+    background-image:url(../src/assets/snownight.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
   .projects-grid {
     grid-template-columns: 1fr;
   }
