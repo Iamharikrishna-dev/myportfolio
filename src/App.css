@@ -1,38 +1,589 @@
-.App {
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth; /* Enables smooth scrolling */
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+#root {
+  display: block;  
+  min-height: 100%;
+  overflow: auto;   
+}
+/* Light Mode */
+body.light-mode {
+  background-image:url(../src/assets/snowday.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-color: #f3efef;
+  color: #1b1b1b;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #282c34;
+  color: #fff;
+  background-image:url(../src/assets/snownight.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Glassmorphism Section Styling */
+.glassmorphism-section {
+  padding: 4rem 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+  background: rgb(255, 255, 255); /* Semi-transparent background */
+  backdrop-filter: blur(15px); /* Frosted glass effect */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+/* Section Titles */
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Header Styling */
+.glassmorphism-header {
+  padding: 2rem 1rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.glassmorphism-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.glassmorphism-header nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.glassmorphism-header nav ul li a, nav ul li .active {
+  color: inherit;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.glassmorphism-header nav ul li a:hover {
+  color: #ddd;
+}
+
+/* Theme Toggle Switch */
+.controls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+}
+
+.sun {
+  left: 5px;
+  color: #ffeb3b;
+}
+
+.moon {
+  right: 5px;
+  color: #fff;
+}
+
+/* About Section */
+.about-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 2rem;
+  text-align: center; /* Center the text */
+}
+
+.about-container img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px; /* Spacing below the profile picture */
+  border: 10px solid rgba(255, 255, 255, 0.3); /* Adding a subtle border around the profile picture */
+  transition: all 0.5s ease; /* Slow transition for hover effects */
+}
+
+/* Optional: Additional Border Style */
+.about-container img:hover {
+  border: 5px solid rgba(255, 255, 255, 0.6); /* Slightly brighter border on hover */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Enhance the shadow on hover */
+ 
+}
+
+.about-container .about-text {
+  max-width: 600px;
+}
+
+.about-container .about-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.about-container .about-text p {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+
+/* Projects Section */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Default to 2 per row */
+  gap: 20px;
+  justify-items: center; /* Centers the project cards horizontally */
+  align-items: center;   /* Centers the project cards vertically */
+  padding: 20px;         /* Optional padding */
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  text-align: center;
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.project-card .project-info {
+  padding: 1rem;
+}
+
+.project-card .project-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-card .project-info p {
+  font-size: 1rem;
+  color: #423e3e;
+}
+
+.glassmorphism-section {
+  padding: 50px 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1); /* Glass effect */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.skill-item {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.2); /* Slightly transparent */
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.skill-item:hover {
+  transform: scale(1.1);
+}
+
+.download-resume-section {
+  margin-top: 20px;
+
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 10px 20px;
+  font-size: 1rem;
+  text-decoration: none;
   color: white;
+  border: none;
+  background-color: #007bff; /* Blue color */
+  border-radius: 6px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.download-btn:hover {
+  background-color: #0056b3; /* Darker blue */
+  transform: scale(1.05);
 }
 
-@keyframes App-logo-spin {
-  from {
+.download-btn svg {
+  font-size: 1.2rem;
+}
+
+
+/* Contact Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form .form-group label {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-form .form-group input,
+.contact-form .form-group textarea {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  font-size: 1rem;
+  color: #333;
+}
+
+.contact-form .form-group input:focus,
+.contact-form .form-group textarea:focus {
+  outline: none;
+  border-color: #2196F3;
+}
+ 
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .resume-section {
+    min-width: unset;
+  }
+}
+/* General Button Styles */
+.submit-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background: linear-gradient(90deg, #007bff, #0056b3); /* Blue color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* While Processing */
+.submit-btn.processing {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+/* Spinner (while processing) */
+.submit-btn .spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid white;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  margin-right: 10px;
+  animation: spin 1s linear infinite;
+}
+
+/* Success State */
+.submit-btn.success {
+  background-color: green !important;
+  cursor: not-allowed;
+}
+
+/* Error State */
+.submit-btn.error {
+  background-color: red !important;
+  cursor: not-allowed;
+}
+
+/* Reset after some time */
+.submit-btn.reset {
+  background: linear-gradient(90deg, #007bff, #0056b3); /* Back to Blue */
+}
+
+/* Hover Effects */
+.submit-btn:not(.processing):hover {
+  background: linear-gradient(90deg, #0056b3, #007bff);
+  transform: scale(1.05);
+}
+
+.submit-btn:not(.processing):active {
+  transform: scale(0.98);
+}
+
+/* Keyframes for spinner */
+@keyframes spin {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
   }
+}
+/* Skills Container */
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 equal-width columns */
+  gap: 50px;
+  justify-items: center; /* Center the items horizontally */
+  align-items: start; /* Align items to the top */
+  padding: 20px;
+}
+.skill-card-link {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit text color */
+  display: block; /* Ensure the entire skill card is clickable */
+}
+/* Skill Card */
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 170px; /* Set fixed width */
+  height: 170px;
+  background: rgba(255, 255, 255, 0.1); /* Glass effect */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.skill-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Icon Styling (Optional if required) */
+.skill-card svg, .skill-card img {
+  margin-bottom: 10px;
+  transition: transform 0.9s ease;
+  scale: 1.4;
+}
+
+
+.skill-card:hover svg,.skill-card:hover img {
+  transform: scale(1.4); /* Slightly enlarge the icon on hover */
+}
+
+.skill-card p {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #3c3a3a;
+  text-shadow: 0 0 5px #aeaeae;
+  font-weight: 600;
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 1024px) {
+  .skills-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+  }
+
+  .skill-card {
+    height: 180px; /* Adjust height on smaller screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .skills-container {
+    grid-template-columns: 1fr; /* 1 column for mobile */
+  }
+
+  .skill-card {
+    height: 160px; /* Adjust height further for smaller devices */
+  }
+}
+footer {
+  padding: 20px;
+  background-color: #1f1f1f; /* Dark background */
+  color: white;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  margin-top: 40px;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+.project-info ul {
+  padding-left: 20px; /* Adds space on the left side of the list */
+  margin-top: 10px;   /* Optional: Adds space above the list */
+}
+
+.project-info li {
+  margin-bottom: 8px; /* Adds space between each list item */
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two cards per row */
+  gap: 20px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 600px; /* Fixed height for uniformity */
+  padding: 15px;
+  overflow: hidden;
+}
+
+.project-image {
+  width: 100%;
+  height: 200px; /* Fixed height for images */
+  object-fit: cover; /* Ensures images fit inside the container without distortion */
+  border-radius: 8px;
+}
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr; /* Show one project per row on smaller screens */
+  }
+  .project-card {
+    max-width: 90%; /* Adjust card width to fit better on smaller screens */
+  }
+  .pagination-controls {
+    margin-top: 20px; /* Adds space between the cards and pagination buttons */
+  }
+}
+.project-info {
+  flex-grow: 1;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  top: 50px;
+  
+}
+
+.pagination-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pagination-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination-btn:hover {
+  background-color: #0056b3;
 }
