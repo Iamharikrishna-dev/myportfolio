@@ -11,6 +11,7 @@ const About = () => {
           <p>
             Hello! I’m Hari Krishnan, a passionate software developer specializing in full-stack development. I love crafting efficient and scalable web applications, solving complex problems, and learning new technologies.
           </p>
+    <p>Dynamic software developer with expertise in back-end and front-end development. Proficient in Java, Python, Golang, and modern front-end frameworks like Vue.js and Bootstrap. Proven ability to collaborate effectively in teams, </p>
         </div>
       </div>
     </section>
