@@ -7,7 +7,7 @@ const SnowEffect = () => {
     // Dynamically generate the snowflakes
     const snowContainer = document.querySelector('.g-snows');
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 50; i++) {
       const snowflake = document.createElement('li');
       snowContainer.appendChild(snowflake);
     }
