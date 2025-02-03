@@ -501,8 +501,9 @@ input:checked + .slider:before {
 .skill-card p {
   margin-top: 10px;
   font-size: 1rem;
-  color: #3c3a3a;
-  text-shadow: 0 0 5px #aeaeae;
+  color: #000000;
+    -webkit-text-stroke: 1px #282828;
+    text-shadow: 0px 4px 4px #282828;
   font-weight: 600;
 }
 
