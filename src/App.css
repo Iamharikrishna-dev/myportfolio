@@ -198,6 +198,7 @@ input:checked + .slider:before {
 .about-container .about-text p {
   line-height: 1.8;
   font-size: 1.1rem;
+   color: black;
 }
 
 
