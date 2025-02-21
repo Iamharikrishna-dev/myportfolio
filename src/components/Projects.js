@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import project1Img from '../assets/project1.png';
 import project2Img from '../assets/project2.png';
 import project3Img from '../assets/project3.png';
+import project4Img from '../assets/project4.png';
 
 const Projects = () => {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0); // Tracks the index of the first visible project
@@ -19,6 +20,17 @@ const Projects = () => {
       ],
       img: project1Img,
       link: 'https://guessit-chi.vercel.app/', // Add project link
+    },
+    {
+      title: ' Blogiverse - A modern and interactive blogging platform.',
+      description: [
+        'Built with: MERN stack (MongoDB, Express.js, React, Node.js)',
+        'Features: User authentication, post creation, editing, and commenting.',
+        'Responsive UI: Optimized for both desktop and mobile users.',
+        'Seamless Experience: Fast, intuitive, and easy-to-use interface.',
+      ],
+      img: project4Img,
+      link: 'https://blogiverse-app.vercel.app/',
     },
     {
       title: 'LingoSound - Text-to-Speech Web App',
