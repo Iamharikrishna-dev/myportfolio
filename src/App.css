@@ -165,7 +165,7 @@ input:checked + .slider:before {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  font-family: bold;
+  font-weight: bold;
   text-align: center; /* Center the text */
 }
 
