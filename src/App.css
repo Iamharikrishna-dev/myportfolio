@@ -542,6 +542,7 @@ footer {
 .project-info ul {
   padding-left: 20px; /* Adds space on the left side of the list */
   margin-top: 10px;   /* Optional: Adds space above the list */
+  text-align: left;
 }
 
 .project-info li {
