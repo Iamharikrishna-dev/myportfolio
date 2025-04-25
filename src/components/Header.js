@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-scroll'; // Import Link for smooth scrolling
+import { Link } from 'react-scroll';
+import { FaSnowflake } from 'react-icons/fa'; // Import the snowflake icon
 
-const Header = ({ theme, setTheme }) => {
+const Header = ({ theme, setTheme, snowEffect, toggleSnowEffect }) => {
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light'); // Toggle light/dark
+    setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
   return (
@@ -13,11 +14,11 @@ const Header = ({ theme, setTheme }) => {
         <ul>
           <li>
             <Link
-              to="about" // Section ID
-              smooth={true} // Enable smooth scrolling
-              duration={1500} // Scroll duration in milliseconds
-              spy={true} // Highlight active section
-              activeClass="active" // Add class for the active link
+              to="about"
+              smooth={true}
+              duration={1500}
+              spy={true}
+              activeClass="active"
             >
               About
             </Link>
@@ -50,6 +51,18 @@ const Header = ({ theme, setTheme }) => {
           <span className="slider">
             <span className={`icon ${theme === 'dark' ? 'moon' : 'sun'}`}>
               {theme === 'dark' ? '🌙' : '☀️'}
+            </span>
+          </span>
+        </label>
+        <label className="switch">
+          <input
+            type="checkbox"
+            checked={snowEffect}
+            onChange={toggleSnowEffect}
+          />
+          <span className="slider">
+            <span className="icon snowflake">
+              <FaSnowflake />
             </span>
           </span>
         </label>
