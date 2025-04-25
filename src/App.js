@@ -13,6 +13,7 @@ import Skills from './components/Skills';
 
 function App() {
   const [theme, setTheme] = useState(sessionStorage.getItem('theme') || 'light');
+  const [snowEffect, setSnowEffect] = useState(false); // State for snow effect
 
   useEffect(() => {
     console.log('Current theme:', theme); // Debugging the theme value
@@ -33,20 +34,31 @@ function App() {
     // Debugging the updated classList
     console.log('Updated body class list:', root.classList);
   }, [theme]);
+
+  const toggleSnowEffect = () => {
+    setSnowEffect(!snowEffect);
+  };
   
   return (
     <div className="App">
       
-      <Header theme={theme} setTheme={setTheme} />
+      <Header
+        theme={theme}
+        setTheme={setTheme}
+        snowEffect={snowEffect}
+        toggleSnowEffect={toggleSnowEffect}
+      />
       <main>
         <About />
         <Projects />
         <Skills/>
         <Resume />
         <Contact />
-        <div className="snow-container">
-        <SnowEffect />
-        </div>
+        {snowEffect && (
+          <div className="snow-container">
+            <SnowEffect />
+          </div>
+        )}
       </main>
       <Footer />
     </div>
