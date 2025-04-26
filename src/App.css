@@ -220,6 +220,22 @@ input:checked + .slider:before {
   color: inherit; /* Changed to inherit */
 }
 
+/* Social Links */
+.about-container .about-text .social-links {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Add space between the text and the icons */
+  gap: 20px; /* Space between the icons */
+}
+
+.about-container .about-text .social-icon {
+  color: inherit; /* Inherit text color */
+  transition: color 0.3s ease;
+}
+
+.about-container .about-text .social-icon:hover {
+  color: #007bff; /* Change color on hover */
+}
 
 /* Projects Section */
 .projects-grid {
