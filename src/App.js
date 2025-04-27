@@ -34,10 +34,10 @@ function App() {
     const userAgent = navigator.userAgent;
 
     // Send email on initial visit
-    const hasVisited = sessionStorage.getItem('hasVisited');
+    const hasVisited = localStorage.getItem('hasVisited');
     if (!hasVisited) {
       sendVisitNotification(userAgent);
-      sessionStorage.setItem('hasVisited', 'true');
+      localStorage.setItem('hasVisited', 'true');
     }
   }, [theme]);
 
