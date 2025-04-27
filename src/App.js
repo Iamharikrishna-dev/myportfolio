@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './App.css'; // Ensure your CSS is correctly linked
+import './App.css';
 import SnowEffect from './SnowEffect';
 import './snow-effect.scss';
 import Header from './components/Header';
@@ -9,17 +9,16 @@ import Resume from './components/Resume';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Skills from './components/Skills';
-
+import emailjs from '@emailjs/browser'; // Import EmailJS
 
 function App() {
   const [theme, setTheme] = useState(sessionStorage.getItem('theme') || 'light');
-  const [snowEffect, setSnowEffect] = useState(false); // State for snow effect
+  const [snowEffect, setSnowEffect] = useState(false);
 
   useEffect(() => {
-    console.log('Current theme:', theme); // Debugging the theme value
+    console.log('Current theme:', theme);
     const root = document.body;
 
-    // Ensure previous classes are removed and new class is added
     if (theme === 'light') {
       root.classList.remove('dark-mode');
       root.classList.add('light-mode');
@@ -28,20 +27,51 @@ function App() {
       root.classList.add('dark-mode');
     }
 
-    // Store the theme in sessionStorage
     sessionStorage.setItem('theme', theme);
-
-    // Debugging the updated classList
     console.log('Updated body class list:', root.classList);
+
+    // Get device information
+    const userAgent = navigator.userAgent;
+
+    // Send email on initial visit
+    const hasVisited = sessionStorage.getItem('hasVisited');
+    if (!hasVisited) {
+      sendVisitNotification(userAgent);
+      sessionStorage.setItem('hasVisited', 'true');
+    }
   }, [theme]);
+
+  const sendVisitNotification = (userAgent) => {
+    const templateParams = {
+      to_name: 'Hari Krishnan', // Your name
+      to_email: 'krishnanhari400.hk@gmail.com', // Your email
+      from_name: 'Portfolio Visitor',
+      message: ` ${userAgent}`,
+    };
+
+    emailjs
+      .send(
+        'service_ozaqk7d', // Replace with your EmailJS service ID
+        'template_fstv3m9', // Replace with your EmailJS template ID
+        templateParams,
+        'JyKYbdWMJzXAwtVV7' // Replace with your EmailJS public key
+      )
+      .then(
+        (result) => {
+          console.log('Visit notification email sent successfully!', result.text);
+        },
+        (error) => {
+          console.error('Error sending visit notification email:', error.text);
+        }
+      );
+  };
 
   const toggleSnowEffect = () => {
     setSnowEffect(!snowEffect);
   };
-  
+
   return (
     <div className="App">
-      
       <Header
         theme={theme}
         setTheme={setTheme}
@@ -51,7 +81,7 @@ function App() {
       <main>
         <About />
         <Projects />
-        <Skills/>
+        <Skills />
         <Resume />
         <Contact />
         {snowEffect && (
