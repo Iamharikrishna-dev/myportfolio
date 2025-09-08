@@ -10,7 +10,7 @@ const Resume = () => {
 
     // Simulate download process
     const link = document.createElement('a');
-    link.href = '/Harikrishnan.pdf'; // Path to the resume file
+    link.href = '/HariKrishnan_K_M_CV_2025.pdf'; // Path to the resume file
     link.download = 'Harikrishnan_Resume.pdf';
     document.body.appendChild(link);
     link.click();
