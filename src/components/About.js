@@ -1,5 +1,5 @@
 import React from 'react';
-import profilePic from '../assets/profile.jpg'; // Replace with your image path
+import profilePic from '../assets/profile.webp'; // Replace with your image path
 import { FaGithub } from 'react-icons/fa'; // Import GitHub icon
 
 

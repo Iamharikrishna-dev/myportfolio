@@ -11,14 +11,13 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 #root {
-  display: block;  
+  display: block;
   min-height: 100%;
-  overflow: auto;   
 }
 
 /* Light Mode */
 body.light-mode {
-  background-image:url(../src/assets/snowday.jpg);
+  background-image:url(../src/assets/snowday.webp);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -31,11 +30,17 @@ body.light-mode {
 body.dark-mode {
   background-color: #282c34;
   color: #fff;
-  background-image:url(../src/assets/snownight.jpg);
+  background-image:url(../src/assets/snownight.webp);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
+}
+body.dark-mode .project-card {
+  background: rgba(30, 34, 44, 0.85) !important;
+  color: #e0e6ed !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  border: 1px solid rgba(63,213,175,0.08);
 }
 
 /* Glassmorphism Section Styling */
@@ -43,11 +48,11 @@ body.dark-mode {
   padding: 4rem 2rem;
   margin: 2rem auto;
   max-width: 1200px;
-  background: rgb(255, 255, 255); /* Semi-transparent background */
-  backdrop-filter: blur(15px); /* Frosted glass effect */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  color: inherit; /* Inherit text color from body */
+  background: rgba(255, 255, 255, 0.85); /* More opaque, less GPU intensive */
+  /* backdrop-filter: blur(15px);  Removed for performance */
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12); /* Lighter shadow for less GPU usage */
+  color: inherit;
 }
 
 /* Section Titles */
@@ -58,26 +63,53 @@ h2 {
 }
 
 /* Header Styling */
+
 .glassmorphism-header {
-  padding: 2rem 1rem;
+  width: 100vw;
+  left: 0;
+  top: 0;
+  position: sticky;
+  z-index: 1000;
+  padding: 2.2rem 0.5rem 1.2rem 0.5rem;
+  min-height: 72px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px) saturate(180%);
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  margin: 0;
+  transition: min-height 0.3s, padding 0.3s;
 }
-
+.glassmorphism-header {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  position: sticky;
+}
+.glassmorphism-header.sticky {
+  min-height: 56px;
+  padding: 0.5rem 0.5rem;
+}
+.glassmorphism-header.sticky h1 {
+  display: none;
+}
 .glassmorphism-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 2.2rem;
+  margin-bottom: 0;
+  margin-left: 2rem;
+  flex: 1;
+  text-align: left;
 }
-
 .glassmorphism-header nav ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 2.5rem;
+  flex: 1;
 }
 
 .glassmorphism-header nav ul li a, nav ul li .active {
@@ -86,20 +118,38 @@ h2 {
   font-weight: bold;
   transition: color 0.3s ease;
 }
+.glassmorphism-header nav ul li a, .glassmorphism-header nav ul li .active {
+  color: #222;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 8px;
+  transition: color 0.3s;
+  letter-spacing: 0.5px;
+}
+.glassmorphism-header nav ul li a:hover, .glassmorphism-header nav ul li .active {
+  color: #3fd5af !important;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(8px) saturate(180%);
+  box-shadow: 0 2px 8px rgba(31,38,135,0.18);
+  border: 1px solid rgba(255,255,255,0.18);
+}
 
 .glassmorphism-header nav ul li a:hover {
-  color: #ddd;
+  color: #004f25 !important;
+  background: rgba(255,255,255,0.7);
 }
 
 /* Theme Toggle Switch */
 .controls {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+  position: relative;
+  margin-left: auto;
   display: flex;
-  flex-direction: column; /* Stack the controls vertically */
-  align-items: flex-end; /* Align items to the right */
-  gap: 10px; /* Add some space between the theme and snow toggle */
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+/* End of .controls block */
 }
 
 .controls label {
@@ -114,8 +164,9 @@ h2 {
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 32px;
+  height: 18px;
+  vertical-align: middle;
 }
 
 .switch input {
@@ -133,17 +184,17 @@ h2 {
   bottom: 0;
   background-color: #ccc;
   transition: 0.4s;
-  border-radius: 34px;
+  border-radius: 16px;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 12px;
+  width: 12px;
   border-radius: 50%;
-  left: 4px;
-  bottom: 4px;
+  left: 3px;
+  bottom: 3px;
   background-color: white;
   transition: 0.4s;
 }
@@ -153,23 +204,23 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  transform: translateX(26px);
+  transform: translateX(12px);
 }
 
 .icon {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 18px;
+  font-size: 11px;
 }
 
 .sun {
-  left: 5px;
+  left: 2px;
   color: #ffeb3b;
 }
 
 .moon {
-  right: 5px;
+  right: 4px;
   color: #fff;
 }
 .snowflake {
@@ -248,19 +299,18 @@ input:checked + .slider:before {
 }
 
 .project-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.85);
+  /* backdrop-filter: blur(10px);  Removed for performance */
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
   overflow: hidden;
   text-align: left;
-  
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-6px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
 }
 
 .project-card img {
@@ -387,7 +437,7 @@ input:checked + .slider:before {
     text-align: center;
   }
   body.light-mode {
-    background-image:url(../src/assets/snowday.jpg);
+  background-image:url(../src/assets/snowday.webp);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -400,7 +450,7 @@ input:checked + .slider:before {
   body.dark-mode {
     background-color: #282c34;
     color: #fff;
-    background-image:url(../src/assets/snownight.jpg);
+  background-image:url(../src/assets/snownight.webp);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -419,6 +469,123 @@ input:checked + .slider:before {
     min-width: unset;
   }
 }
+
+/* Menu Button for Mobile */
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #3fd5af;
+  position: absolute;
+  left: 1rem;
+  top: 1.2rem;
+  z-index: 3000;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(63,213,175,0.18);
+  background: rgba(40,44,54,0.85);
+  border-radius: 8px;
+}
+
+.menu-icon {
+  font-size: 2rem;
+  color: #3fd5af;
+}
+
+@media (max-width: 768px) {
+  .menu-btn {
+    display: block;
+    top: 0.5rem;
+    right: 1rem;
+    left: auto;
+    z-index: 3000;
+    position: absolute;
+  }
+  .glassmorphism-header nav ul {
+    display: none;
+  }
+  .glassmorphism-header nav.open ul {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 1rem;
+    left: auto;
+    width: 70vw;
+    margin: 0;
+    align-items: flex-end;
+    min-width: 200px;
+    max-width: 350px;
+    background: rgba(40, 44, 54, 0.85);
+    backdrop-filter: blur(12px) saturate(180%);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    z-index: 1999;
+    padding: 1.5rem 0.5rem;
+    gap: 1.5rem;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,0.18);
+  }
+  .glassmorphism-header nav.open ul li {
+    width: 100%;
+    text-align: center;
+  }
+  .glassmorphism-header nav.open ul li a {
+    display: block;
+    width: 100%;
+    padding: 0.7rem 0;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 10px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .glassmorphism-header nav.open ul li a:hover,
+  .glassmorphism-header nav.open ul li .active {
+    background: rgba(63,213,175,0.18);
+    color: #3fd5af;
+    box-shadow: 0 2px 8px rgba(63,213,175,0.18);
+    border: 1px solid rgba(63,213,175,0.28);
+  }
+}
+
+@media (max-width: 768px) {
+  .glassmorphism-header {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 72px;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    position: relative;
+  }
+  .glassmorphism-header h1 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 3.5rem;
+    padding: 0.5rem 0;
+    z-index: 2001;
+    position: relative;
+    background: rgba(40,44,54,0.85);
+    border-radius: 8px;
+    color: #3fd5af;
+    width: auto;
+    max-width: 80vw;
+    box-shadow: 0 2px 8px rgba(63,213,175,0.18);
+  }
+  .menu-btn {
+    top: 0.5rem;
+    right: 1rem;
+    left: auto;
+    z-index: 3000;
+    position: absolute;
+  }
+  .controls {
+    position: absolute;
+    left: 1rem;
+    right: auto;
+    top: 0.5rem;
+    z-index: 2002;
+  }
+}
+
 /* General Button Styles */
 .submit-btn {
   padding: 10px 20px;
@@ -641,4 +808,32 @@ footer {
 
 .pagination-btn:hover {
   background-color: #0056b3;
+}
+@media (max-width: 768px) {
+  .glassmorphism-header {
+    position: sticky;
+    top: 0;
+    background: rgba(40,44,54,0.85);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    z-index: 3000;
+  }
+  .glassmorphism-header h1 {
+    background: none;
+    color: #3fd5af;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .menu-btn {
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    color: #3fd5af;
+  }
+  .glassmorphism-header nav.open ul li a,
+  .glassmorphism-header nav.open ul li .active {
+    background: none !important;
+    color: #fff !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
 }

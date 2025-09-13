@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import project1Img from '../assets/project1.png';
-import project2Img from '../assets/project2.png';
-import project3Img from '../assets/project3.png';
-import project4Img from '../assets/project4.png';
+import project1Img from '../assets/project1.webp';
+import project2Img from '../assets/project2.webp';
+import project3Img from '../assets/project3.webp';
+import project4Img from '../assets/project4.webp';
 
 const Projects = () => {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0); // Tracks the index of the first visible project

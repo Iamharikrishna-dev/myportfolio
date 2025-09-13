@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import './App.css';
-import SnowEffect from './SnowEffect';
 import './snow-effect.scss';
-import Header from './components/Header';
-import About from './components/About';
-import Projects from './components/Projects';
-import Resume from './components/Resume';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import Skills from './components/Skills';
-import emailjs from '@emailjs/browser'; // Import EmailJS
+import emailjs from '@emailjs/browser';
+
+const SnowEffect = lazy(() => import('./SnowEffect'));
+const Header = React.memo(lazy(() => import('./components/Header')));
+const About = React.memo(lazy(() => import('./components/About')));
+const Projects = lazy(() => import('./components/Projects'));
+const Resume = React.memo(lazy(() => import('./components/Resume')));
+const Contact = React.memo(lazy(() => import('./components/Contact')));
+const Footer = React.memo(lazy(() => import('./components/Footer')));
+const Skills = React.memo(lazy(() => import('./components/Skills')));
 
 function App() {
   const [theme, setTheme] = useState(sessionStorage.getItem('theme') || 'light');
   const [snowEffect, setSnowEffect] = useState(false);
 
   useEffect(() => {
-    console.log('Current theme:', theme);
     const root = document.body;
-
     if (theme === 'light') {
       root.classList.remove('dark-mode');
       root.classList.add('light-mode');
@@ -26,13 +25,9 @@ function App() {
       root.classList.remove('light-mode');
       root.classList.add('dark-mode');
     }
-
     sessionStorage.setItem('theme', theme);
-    console.log('Updated body class list:', root.classList);
-
     // Get device information
     const userAgent = navigator.userAgent;
-
     // Send email on initial visit
     const hasVisited = localStorage.getItem('hasVisited');
     if (!hasVisited) {
@@ -72,25 +67,27 @@ function App() {
 
   return (
     <div className="App">
-      <Header
-        theme={theme}
-        setTheme={setTheme}
-        snowEffect={snowEffect}
-        toggleSnowEffect={toggleSnowEffect}
-      />
-      <main>
-        <About />
-        <Projects />
-        <Skills />
-        <Resume />
-        <Contact />
-        {snowEffect && (
-          <div className="snow-container">
-            <SnowEffect />
-          </div>
-        )}
-      </main>
-      <Footer />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Header
+          theme={theme}
+          setTheme={setTheme}
+          snowEffect={snowEffect}
+          toggleSnowEffect={toggleSnowEffect}
+        />
+        <main>
+          <About />
+          <Projects />
+          <Skills />
+          <Resume />
+          <Contact />
+          {snowEffect && (
+            <div className="snow-container">
+              <SnowEffect />
+            </div>
+          )}
+        </main>
+        <Footer />
+      </Suspense>
     </div>
   );
 }
