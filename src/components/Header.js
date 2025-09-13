@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-scroll';
-import { FaSnowflake } from 'react-icons/fa'; // Import the snowflake icon
+import { FaSnowflake } from 'react-icons/fa';
 
 const Header = ({ theme, setTheme, snowEffect, toggleSnowEffect }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,7 +24,8 @@ const Header = ({ theme, setTheme, snowEffect, toggleSnowEffect }) => {
 
   return (
     <header ref={headerRef} className={`glassmorphism-header${isSticky ? ' sticky' : ''}`}>
-      {!isSticky && <h1>My Portfolio</h1>}
+      {/* Always show Portfolio title */}
+      <h1>Portfolio</h1>
       <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)}>
         <span className="menu-icon">&#9776;</span>
       </button>

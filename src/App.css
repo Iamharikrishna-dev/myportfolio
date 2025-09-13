@@ -93,7 +93,9 @@ h2 {
   padding: 0.5rem 0.5rem;
 }
 .glassmorphism-header.sticky h1 {
-  display: none;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 .glassmorphism-header h1 {
   font-size: 2.2rem;
@@ -128,7 +130,7 @@ h2 {
   letter-spacing: 0.5px;
 }
 .glassmorphism-header nav ul li a:hover, .glassmorphism-header nav ul li .active {
-  color: #3fd5af !important;
+  color: #098946d1  !important;
   background: rgba(255,255,255,0.25);
   backdrop-filter: blur(8px) saturate(180%);
   box-shadow: 0 2px 8px rgba(31,38,135,0.18);
@@ -489,7 +491,7 @@ input:checked + .slider:before {
 
 .menu-icon {
   font-size: 2rem;
-  color: #3fd5af;
+  color: #1a4339;
 }
 
 @media (max-width: 768px) {
@@ -508,7 +510,7 @@ input:checked + .slider:before {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 70px;
     right: 1rem;
     left: auto;
     width: 70vw;
@@ -516,7 +518,7 @@ input:checked + .slider:before {
     align-items: flex-end;
     min-width: 200px;
     max-width: 350px;
-    background: rgba(40, 44, 54, 0.85);
+            background: rgb(154 159 169 / 69%);
     backdrop-filter: blur(12px) saturate(180%);
     border-radius: 16px;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -551,7 +553,8 @@ input:checked + .slider:before {
 @media (max-width: 768px) {
   .glassmorphism-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center; /* Center items horizontally */
+    justify-content: center;
     min-height: 72px;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
@@ -559,7 +562,7 @@ input:checked + .slider:before {
   }
   .glassmorphism-header h1 {
     font-size: 1.5rem;
-    margin: 0 0 0.5rem 3.5rem;
+    margin: 0 auto 0.5rem auto; /* Center horizontally */
     padding: 0.5rem 0;
     z-index: 2001;
     position: relative;
@@ -569,6 +572,8 @@ input:checked + .slider:before {
     width: auto;
     max-width: 80vw;
     box-shadow: 0 2px 8px rgba(63,213,175,0.18);
+    text-align: center; /* Center text */
+    display: block;
   }
   .menu-btn {
     top: 0.5rem;
@@ -813,13 +818,13 @@ footer {
   .glassmorphism-header {
     position: sticky;
     top: 0;
-    background: rgba(40,44,54,0.85);
+            background: rgb(162 167 178 / 37%);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     z-index: 3000;
   }
   .glassmorphism-header h1 {
     background: none;
-    color: #3fd5af;
+    color: #303635;
     box-shadow: none;
     border-radius: 0;
   }
