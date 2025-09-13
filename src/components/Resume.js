@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { FaDownload } from 'react-icons/fa'; // Download icon
 import { FaFilePdf, FaFileWord } from 'react-icons/fa'; // PDF and DOC icons
-<<<<<<< HEAD
-
-const Resume = () => {
-  const [showModal, setShowModal] = useState(false);
-
-=======
 import { ImSpinner8 } from 'react-icons/im'; // Spinner icon
 
 const Resume = () => {
@@ -37,7 +31,6 @@ const Resume = () => {
     }, 2000);
   };
 
->>>>>>> ba752a6148810468c279a8f3de50ca6136f1d0c6
   return (
     <section id="resume" className="glassmorphism-section">
       <h2>Resume</h2>
@@ -51,10 +44,7 @@ const Resume = () => {
         <button
           onClick={() => setShowModal(true)}
           className={`download-btn`}
-<<<<<<< HEAD
-=======
           disabled={downloadingType === 'pdf' || downloadingType === 'doc'}
->>>>>>> ba752a6148810468c279a8f3de50ca6136f1d0c6
         >
           <FaDownload /> Download Resume
         </button>
@@ -62,11 +52,7 @@ const Resume = () => {
           <div
             className="resume-modal-overlay"
             onClick={e => {
-<<<<<<< HEAD
-              if (e.target.classList.contains('resume-modal-overlay')) {
-=======
               if (e.target.classList.contains('resume-modal-overlay') && !downloadingType) {
->>>>>>> ba752a6148810468c279a8f3de50ca6136f1d0c6
                 setShowModal(false);
               }
             }}
@@ -75,27 +61,6 @@ const Resume = () => {
             <div className="resume-modal">
               <h3>Select Format</h3>
               <div className="resume-modal-options">
-<<<<<<< HEAD
-                <a
-                  className="download-btn pdf-btn"
-                  href="/HariKrishnan_K_M_CV_2025.pdf"
-                  download="Harikrishnan_Resume.pdf"
-                  style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
-                  onClick={() => setShowModal(false)}
-                >
-                  <FaFilePdf style={{ color: 'white', fontSize: '1.5rem' }} /> PDF
-                </a>
-                <div className="doc-sample" style={{ display: 'flex', alignItems: 'center', gap: '8px', marginLeft: '20px' }}>
-                  <a
-                    className="download-btn doc-btn"
-                    href="/Harikrishnan.docx"
-                    download="Harikrishnan_Resume.doc"
-                    style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
-                    onClick={() => setShowModal(false)}
-                  >
-                    <FaFileWord style={{ color: 'white', fontSize: '1.5rem' }} /> DOC
-                  </a>
-=======
                 <button
                   className="download-btn pdf-btn"
                   onClick={() => handleDownload('pdf')}
@@ -115,7 +80,6 @@ const Resume = () => {
                     {downloadingType === 'doc' ? <ImSpinner8 className="spinner" /> : <FaFileWord style={{ color: 'white', fontSize: '1.5rem' }} />}
                     DOC
                   </button>
->>>>>>> ba752a6148810468c279a8f3de50ca6136f1d0c6
                 </div>
               </div>
             </div>
@@ -172,10 +136,6 @@ const Resume = () => {
           </div>,
           document.body
         )}
-<<<<<<< HEAD
-        
-=======
->>>>>>> ba752a6148810468c279a8f3de50ca6136f1d0c6
       </div>
     </section>
   );
