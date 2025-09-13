@@ -4,7 +4,10 @@
   "private": true,
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+<<<<<<< HEAD
     "@lottiefiles/dotlottie-react": "^0.16.1",
+=======
+>>>>>>> ba752a6148810468c279a8f3de50ca6136f1d0c6
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
